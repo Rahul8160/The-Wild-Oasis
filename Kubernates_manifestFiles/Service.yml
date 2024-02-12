@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: the-Wild-service
+  namespace: theWildOasis
 spec:
   selector:
     app: The-Wild-Oasis
