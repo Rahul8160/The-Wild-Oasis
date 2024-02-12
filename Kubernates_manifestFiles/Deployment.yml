@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: The-Wild-Oasis
-  namespace: theWildOasis
+  namespace: thewildoasis
 spec:
   replicas: 3 # Adjust as needed
   selector:

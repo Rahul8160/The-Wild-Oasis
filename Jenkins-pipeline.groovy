@@ -68,5 +68,26 @@ pipeline{
             }
         }
 
+        stage('Deploy to container'){
+            steps{
+                sh 'docker run -d --name thewild -p 3000:3000 rudraksh69/thewiloasis:latest'
+            }
+        }
+        stage('Deploy to kubernets'){
+            steps{
+                script{
+                    withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: 'thewildoasis', restrictKubeConfigAccess: false, serverUrl: '') {
+                       sh '''kubectl apply -f deployment.yml 
+                             -f Service.yml -f Secrets.yml
+                              -f ConfigMap.yml'''
+                  }
+                }
+            }
+        }
+
+
+
+
+
     }
 }
