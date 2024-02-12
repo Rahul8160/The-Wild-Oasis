@@ -77,8 +77,9 @@ pipeline{
             steps{
                 script{
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: 'thewildoasis', restrictKubeConfigAccess: false, serverUrl: '') {
-                       sh '''kubectl apply -f deployment.yml 
-                             -f Service.yml -f Secrets.yml
+                       sh '''kubectl apply -f deployment.yml \
+                             -f Service.yml \
+                             -f Secrets.yml \
                               -f ConfigMap.yml'''
                   }
                 }
