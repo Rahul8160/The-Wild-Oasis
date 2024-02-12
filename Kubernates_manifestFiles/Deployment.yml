@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: The-Wild-Oasis
+spec:
+  replicas: 3 # Adjust as needed
+  selector:
+    matchLabels:
+      app: The-Wild-Oasis
+  template:
+    metadata:
+      labels:
+        app: The-Wild-Oasis
+    spec:
+      containers:
+        - name: The-Wild-Oasis
+          image: rudraksh69/thewiloasis:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: SUPABASE_API_INFO
+          valueFrom:
+            configMapKeyRef:
+              name: supabase-configmap
+              key: VITE_SUPABASE_URL
+        - name: SUPABASE_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: supabase-secrets
+              key: SUPABASE_API_KEY
